@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+int t=1;a[100],n,i,j,temp;
+printf("Enter the total number of elements : ");
+t++;
+scanf("%d",&n);
+t++;
+printf("Enter the array elements :\n");
+t++;
+t++;
+for(i=0;i<n;i++)
+   {
+      scanf("%d",&a[i]);
+      t+=2
+   }
+   t++;
+for(i=0;i<n;i++)
+  {
+  t++;
+  t++;
+   for(j=i+1;j<n;j++)
+     {
+     t++;
+       if(a[i]>a[j])
+          {
+          t+=4;
+            temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+          }
+     }
+  }
+   printf("Selection sort result : ");
+   t++;
+   t++;
+   for(i=0;i<n;i++)
+   {
+   t++;
+     printf("%d\t",a[i]);
+     t++;
+   }
+   printf("Time complexity: ");
+ 
+   t++;
+   return 0;
+   
+}
