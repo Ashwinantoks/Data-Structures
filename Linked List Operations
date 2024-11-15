@@ -1,0 +1,216 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+int data;
+struct node *addr;
+};
+struct node *head = NULL;
+int notExit = 1;
+// Function Prototypes
+struct node *createnode(int item);
+int node_count();
+void insert_beg();
+void insert_end();
+void insert_pos();
+void delete_beg();
+void delete_end();
+void delete_pos();
+void display_list();
+// Create a new node
+struct node *createnode(int item)
+{
+struct node *nn = (struct node*)malloc(sizeof(struct node));
+nn->data = item;
+nn->addr = NULL;
+return nn;
+}
+// Count the number of nodes in the linked list
+int node_count()
+{
+int count = 0;
+struct node *temp = head;
+while (temp != NULL)
+{
+count++;
+temp = temp->addr;
+}
+return count;
+}
+// Insert a node at the beginning
+void insert_beg()
+{
+int item;
+printf("Enter the element: ");
+scanf("%d", &item);
+struct node *nn = createnode(item);
+nn->addr = head;
+head = nn;
+display_list();
+
+}
+// Insert a node at the end
+void insert_end()
+{
+int item;
+printf("Enter the element: ");
+scanf("%d", &item);
+struct node *nn = createnode(item);
+if (head == NULL)
+{
+head = nn;
+}
+else
+{
+struct node *p = head;
+while (p->addr != NULL)
+{
+p = p->addr;
+}
+p->addr = nn;
+}
+display_list();
+}
+// Insert a node at a specific position
+void insert_pos()
+{
+int item, pos, count;
+printf("Enter the position to which element is to be inserted: ");
+scanf("%d", &pos);
+count = node_count();
+if (pos < 1 || pos > count + 1)
+{
+printf("Enter a valid position!\n");
+return;
+}
+printf("Enter the value to be inserted: ");
+scanf("%d", &item);
+struct node *nn = createnode(item);
+if (pos == 1)
+{
+nn->addr = head;
+head = nn;
+}
+else
+{
+struct node *p = head;
+for (int i = 1; i < pos - 1; i++)
+{
+p = p->addr;
+}
+nn->addr = p->addr;
+
+p->addr = nn;
+}
+display_list();
+}
+// Delete the first node
+void delete_beg()
+{
+if (head == NULL)
+{
+printf("Linked list is Empty!\n");
+}
+else
+{
+struct node *temp = head;
+head = head->addr;
+free(temp);
+}
+display_list();
+}
+// Delete the last node
+void delete_end()
+{
+if (head == NULL)
+{
+printf("Linked list is Empty!\n");
+}
+else if (head->addr == NULL)
+{
+free(head);
+head = NULL;
+}
+else
+{
+struct node *p = head, *c = NULL;
+while (p->addr != NULL)
+{
+c = p;
+p = p->addr;
+}
+c->addr = NULL;
+free(p);
+}
+display_list();
+}
+// Delete a node at a specific position
+void delete_pos()
+{
+int pos, count;
+printf("Enter the position from which element is to be deleted: ");
+scanf("%d", &pos);
+count = node_count();
+if (pos < 1 || pos > count)
+{
+printf("Enter a valid position!\n");
+return;
+
+}
+if (pos == 1)
+{
+delete_beg();
+} else {
+struct node *p = head, *c = NULL;
+for (int i = 1; i < pos; i++)
+{
+c = p;
+p = p->addr;
+}
+c->addr = p->addr;
+free(p);
+}
+display_list();
+}
+// Display the linked list
+void display_list()
+{
+if (head == NULL)
+{
+printf("Linked list is empty!\n");
+} else {
+struct node *p = head;
+printf("Linked list: ");
+while (p != NULL)
+{
+printf("%d ", p->data);
+p = p->addr;
+}
+printf("\n");
+}
+}
+// Main function
+int main()
+{
+int opt;
+while (notExit == 1)
+{
+printf("(1) Insertion at Front\n(2) Insertion at End\n(3) Insertion after a position\n(4) Deletion
+atFront\n(5) Deletion at End\n(6) Deletion after a position\n(7) Exit\n");
+printf("Enter your choice: ");
+scanf("%d", &opt);
+switch (opt)
+{
+case 1: insert_beg(); break;
+case 2: insert_end(); break;
+case 3: insert_pos(); break;
+case 4: delete_beg(); break;
+case 5: delete_end(); break;
+case 6: delete_pos(); break;
+case 7: notExit = 0; printf("Exited!\n"); break;
+default: printf("Enter a valid operator!\n");
+}
+
+}
+return 0;
+}
