@@ -1,0 +1,43 @@
+#include<stdio.h>
+void main()
+{
+int i,n,temp,j,t,count;
+printf("Enter the number of elements:");
+scanf("%d",&n);
+int a[20];
+printf("Enter the elements:\n");
+t++;
+for(i=0;i<n;i++)
+{
+t++;
+scanf("%d",&a[i]);
+}
+printf("\nBubble sort:");
+t++;
+for(i=0;i<n-1;i++)
+{
+t++;
+t++;
+for(j=0;j<n-i-1;j++)
+{
+t++;
+if(a[j]>a[j+1])
+{
+temp=a[j];
+t++;
+a[j]=a[j+1];
+t++;
+a[j+1]=temp;
+t++;
+}
+}
+}
+t++;
+for(i=0;i<n;i++)
+{
+t++;
+printf("%d\t",a[i]);
+}
+printf("\nTime complexity is %d",t);
+printf("\nSpace complexity is %d",20+4*n);
+}
