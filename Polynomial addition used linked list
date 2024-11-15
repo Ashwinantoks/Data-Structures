@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int coef;
+int expo;
+struct node *addr;
+};
+struct node *head;
+struct node *createnode(int c,int e);
+struct node *create_poly(int n);
+struct node *add_poly(struct node *head1, struct node *head2);
+void display_poly(struct node *h1);
+struct node *createnode(int c,int e)
+{
+struct node *nn;
+nn = (struct node *)malloc(sizeof(struct node));
+nn->coef=c;
+nn->expo=e;
+nn->addr=NULL;
+return nn;
+}
+struct node *create_poly(int n)
+{
+int c, e;
+head = NULL;
+struct node *nn,*l;
+for(int i=1;i<=n;i++)
+{
+printf("Enter the coefficient(%d): ",i);
+scanf("%d",&c);
+printf("Enter the exponent(%d): ",i);
+scanf("%d",&e);
+nn = createnode(c, e);
+if(head == NULL)
+{
+head=l=nn;
+}
+else
+{
+l->addr=nn;
+l=nn;
+}
+}
+return head;
+}
+struct node *add_poly(struct node *h1, struct node *h2)
+{
+struct node *p1,*p2,*p3,*nn,*l;
+head = NULL;
+p1=h1;
+p2=h2;
+while(p1!=NULL && p2!=NULL)
+
+{
+if(p1->expo > p2->expo)
+{
+nn = createnode(p1->coef,p1->expo);
+p1=p1->addr;
+}
+else if(p1->expo == p2->expo)
+{
+nn = createnode(p1->coef+p2->coef,p1->expo);
+p1=p1->addr;
+p2=p2->addr;
+}
+else
+{
+nn = createnode(p2->coef,p2->expo);
+p2=p2->addr;
+}
+if(head == NULL)
+{
+head=l=nn;
+}
+else
+{
+l->addr=nn;
+l=nn;
+}
+}
+while(p1 != NULL)
+{
+nn = createnode(p1->coef,p1->expo);
+p1=p1->addr;
+if(head == NULL)
+{
+head=l=nn;
+}
+else
+{
+l->addr=nn;
+l=nn;
+}
+}
+while(p2 != NULL)
+{
+nn = createnode(p2->coef,p2->expo);
+p2=p2->addr;
+if(head == NULL)
+{
+head=l=nn;
+}
+else
+{
+l->addr=nn;
+l=nn;
+}
+}
+return head;
+}
+
+void display_poly(struct node *h1)
+{
+struct node *p=h1;
+while(p->addr != NULL)
+{
+printf("%dx^%d + ",p->coef,p->expo);
+p=p->addr;
+}
+printf("%dx^%d\n",p->coef,p->expo);
+}
+void main()
+{
+int n1,n2;
+struct node *h1,*h2,*h3;
+printf("Enter the no. of terms of Polynomial 1: ");
+scanf("%d",&n1);
+h1 = create_poly(n1);
+printf("\nPolynomial 1: ");
+display_poly(h1);
+printf("\nEnter the no. of terms of Polynomial 2: ");
+scanf("%d",&n2);
+h2 = create_poly(n2);
+printf("\nPolynomial 2: ");
+display_poly(h2);
+h3 = add_poly(h1,h2);
+printf("\nThe Resultant Polynomial: ");
+display_poly(h3);
+}
