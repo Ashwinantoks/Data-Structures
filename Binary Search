@@ -1,0 +1,70 @@
+#include<stdio.h>
+int main()
+{
+int left=0,n,x,flag,time=3,mid,i,space;
+printf("\n Enter the no of elements in the list : ");
+time++;
+scanf("%d",&n);
+time++;
+printf("\n Enter the elements \n");
+time++;
+int a[n],right=n-1;
+time++;
+time++;
+for(i=0;i<n;i++)
+{
+scanf("%d",&a[i]);
+time++;
+time++;
+}
+printf("\n Enter the element to be searched : ");
+time++;
+scanf("%d",&x);
+time++;
+time++;
+while(left<=right)
+{
+mid=left+(right-left)/2;
+if(x==a[mid])
+{
+flag=1;
+break;
+time++;
+time++;
+}
+else if(x>a[mid])
+{
+left=mid+1;
+time++;
+time++;
+}
+else if(x<a[mid])
+{
+right=mid-1;
+time++;
+time++;
+}
+time++;
+time++;
+}
+if(flag==0)
+{
+printf("\n The %d is not found",x);
+time++;
+
+time++;
+}
+else
+{
+printf("\n the %d is found at %d position",x,mid+1);
+time++;
+time++;
+}
+space=32+(4*n);
+time++;
+time++;
+time++;
+printf("\n The space complexity is : %d",space);
+printf("\n The time complexity is : %d",time);
+return 0;
+}
