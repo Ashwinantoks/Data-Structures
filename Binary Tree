@@ -1,0 +1,64 @@
+#include <stdio.h>
+int main()
+{
+int n;
+printf("Enter the number of elements: ");
+scanf("%d", &n);
+int array[n + 1];
+printf("Enter the elements:\n");
+for(int i = 1; i <= n; i++)
+{
+scanf("%d", &array[i]);
+}
+printf("The elements are:\n");
+for(int i = 1; i <= n; i++)
+{
+printf("%d\t", array[i]);
+}
+printf("\n");
+int k = 0;
+while(k == 0)
+{
+printf("Enter any node (1 to %d, 0 to exit): ", n);
+int node;
+scanf("%d", &node);
+if (node == 0)
+{
+break;
+}
+if(node < 1 || node > n)
+{
+printf("Invalid node. Please enter a valid node between 1 and %d.\n", n);
+continue;
+}
+if (node == 1)
+{
+printf("This is the root node\n");
+}
+else
+{
+printf("The parent node is %d\n", node / 2);
+printf("The value of the parent node is %d\n", array[node / 2]);
+printf("The value of the node is %d\n", array[node]);
+int leftChildIndex = 2 * node;
+int rightChildIndex = (2 * node) + 1;
+if (leftChildIndex > n)
+{
+printf("This node has no left child\n");
+}
+else
+{
+printf("The left child node is %d and the value at the node is %d\n", leftChildIndex, array[leftChildIndex]);
+}
+if (rightChildIndex > n)
+{
+printf("This node has no right child\n");
+}
+else
+{
+printf("The right child node is %d and the value at the node is %d\n", rightChildIndex, array[rightChildIndex]);
+}
+}
+}
+return 0;
+}
